@@ -1,27 +1,40 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileSchoolController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
-| Public Route
+| PUBLIC ROUTES (GUEST)
 |--------------------------------------------------------------------------
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/profil-sekolah', [ProfileSchoolController::class, 'index']);
+
+Route::get('/berita', [NewsController::class, 'index']);
+Route::get('/berita/{id}', [NewsController::class, 'show']);
+
+Route::get('/galeri', [GalleryController::class, 'index']);
+
+Route::get('/kontak', [ContactController::class, 'index']);
+Route::post('/kontak', [ContactController::class, 'send']);
 
 /*
 |--------------------------------------------------------------------------
-| Authenticated Routes
+| AUTHENTICATED ROUTES
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth'])->group(function () {
 
     /*
     |--------------------------------------------------
-    | Profile (Breeze default)
+    | Profile (Laravel Breeze default)
     |--------------------------------------------------
     */
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
