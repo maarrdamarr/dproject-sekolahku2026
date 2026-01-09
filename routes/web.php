@@ -7,6 +7,12 @@ use App\Http\Controllers\ProfileSchoolController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Student\StudentDashboardController;
+use App\Http\Controllers\Student\StudentProfileController;
+use App\Http\Controllers\Student\StudentGradeController;
+use App\Http\Controllers\Student\StudentScheduleController;
+use App\Http\Controllers\Student\StudentAnnouncementController;
+use App\Http\Controllers\Student\StudentMaterialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,11 +85,22 @@ Route::middleware(['auth'])->group(function () {
     | SISWA
     |--------------------------------------------------
     */
-    Route::middleware('role:siswa')->prefix('siswa')->group(function () {
-        Route::get('/dashboard', function () {
-            return 'Dashboard Siswa';
-        })->name('siswa.dashboard');
+    Route::middleware(['auth','role:siswa'])->prefix('siswa')->group(function () {
+
+        Route::get('/dashboard', [StudentDashboardController::class, 'index']);
+
+        Route::get('/profile', [StudentProfileController::class, 'edit']);
+        Route::post('/profile', [StudentProfileController::class, 'update']);
+
+        Route::get('/nilai', [StudentGradeController::class, 'index']);
+
+        Route::get('/jadwal', [StudentScheduleController::class, 'index']);
+
+        Route::get('/pengumuman', [StudentAnnouncementController::class, 'index']);
+
+        Route::get('/materi', [StudentMaterialController::class, 'index']);
     });
+
 
 });
 

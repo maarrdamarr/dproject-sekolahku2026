@@ -6,6 +6,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property-read \App\Models\Profile|null $profile
+ * @property-read \App\Models\Student|null $student
+ * @property-read \App\Models\Teacher|null $teacher
+ */
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -22,7 +27,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /* ================= RELATIONSHIPS ================= */
+    // ================= RELATIONSHIPS =================
 
     public function profile()
     {
