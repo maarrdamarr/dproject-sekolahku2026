@@ -1,5 +1,6 @@
-<h1>Jadwal</h1>
+@extends('layouts.dashboard.student')
 
+@section('content')
 <ul>
 @foreach($schedules as $s)
 <li>
@@ -9,3 +10,5 @@
 </li>
 @endforeach
 </ul>
+@endsection
+

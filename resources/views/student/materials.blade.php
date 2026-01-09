@@ -1,5 +1,6 @@
-<h1>Materi</h1>
+@extends('layouts.dashboard.student')
 
+@section('content')
 <ul>
 @foreach($materials as $m)
 <li>
@@ -10,3 +11,6 @@
 </li>
 @endforeach
 </ul>
+{{ $materials->links() }}
+@endsection
+

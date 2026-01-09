@@ -10,7 +10,7 @@ class StudentMaterialController extends Controller
     public function index()
     {
         return view('student.materials', [
-            'materials' => Material::with('subject')->get(),
+            'materials' => Material::with('subject')->paginate(10),
         ]);
     }
 }

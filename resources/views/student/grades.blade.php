@@ -1,5 +1,6 @@
-<h1>Nilai</h1>
+@extends('layouts.dashboard.student')
 
+@section('content')
 <table border="1">
 @foreach($grades as $g)
 <tr>
@@ -8,3 +9,6 @@
 </tr>
 @endforeach
 </table>
+{{ $grades->links() }}
+@endsection
+

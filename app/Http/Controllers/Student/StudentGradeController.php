@@ -10,7 +10,7 @@ class StudentGradeController extends Controller
     public function index()
     {
         return view('student.grades', [
-            'grades' => auth::user()->student->grades()->with('subject')->get(),
+            'grades' => auth::user()->student->grades()->with('subject')->paginate(10),
         ]);
     }
 }
